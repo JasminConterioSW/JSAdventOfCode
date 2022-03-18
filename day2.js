@@ -4,37 +4,37 @@ const nValuesInInstruction = 4; //Adding this in is maybe a case of YAGNI, but i
 const outputTarget = 19690720;
 
 let memory
-let instructionPointer, programRunning, command, arg1Pos, arg2Pos, ansPos, output;
+let instructionPointer, programRunning, opCode, arg1Pos, arg2Pos, ansPos, output;
 
 for (let noun=0; noun<=99; noun++)
 {
     for (let verb = 0; verb<=99; verb++){
-        memory = input.split(',')
+        memory = input.split(',').map(v => parseInt(v));
         memory[1] = noun;
         memory[2] = verb;
 
         if (memory.length >0){
             instructionPointer = 0;
+
             programRunning = true
         }
 
         while (programRunning) {
-            command = memory[instructionPointer];
-            if (command == 99) {
+            opCode = memory[instructionPointer];
+            if (opCode == 99) {
                 programRunning = false;
             }
-            else if (command==1 || command == 2) {
+            else if (opCode==1 || opCode == 2) {
                 arg1Pos = memory[instructionPointer+1]
                 arg2Pos = memory[instructionPointer+2]
                 ansPos = memory[instructionPointer+3]
-                if (command == 1) {
-                    memory[ansPos] = Number(memory[arg1Pos])+Number(memory[arg2Pos])
+                if (opCode == 1) {
+                    memory[ansPos] = memory[arg1Pos]+memory[arg2Pos]
                 }
                 else {
-                    memory[ansPos] = Number(memory[arg1Pos])*Number(memory[arg2Pos])
+                    memory[ansPos] = memory[arg1Pos]*memory[arg2Pos]
                 }
                 instructionPointer += nValuesInInstruction;
-
             }
             else {
                 console.log(`Error - unrecognised command at position ${instructionPointer}`)
