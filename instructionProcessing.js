@@ -14,7 +14,7 @@ exports.getInstructionLength = function(opCode) {
 exports.getParameterModes = function(param0, instructionLength) {
     let paramModes = Array.from(param0.toString().slice(0,-2)).map(m => parseInt(m));
     while (paramModes.length < instructionLength-1) {
-        paramModes.push(0)
+        paramModes.unshift(0)
     }
     return paramModes.reverse();
 }

@@ -18,6 +18,13 @@ exports.executeInstruction = function(memory, opCode, parameters, parameterModes
             break;
         case 2:
             memory[arguments[2]] = arguments[0]*arguments[1];
+            break
+        case 3:
+            console.log('INPUT!')
+            memory[arguments[0]] = Number(readline.prompt());
+            break
+        case 4:
+            console.log(arguments[0])
     }
 
     return memory
@@ -34,8 +41,14 @@ getArguments = function(opCode, parameters, parameterModes, memory) {
                 arguments.push(memory[parameters[i]])
             }
         }
-        arguments.push(parameters[2])
     }
+    if (opCode == 4 && parameterModes[0]==0) {
+        arguments.push(memory[parameters[0]])
+    }
+    else {
+        arguments.push(parameters.slice(-1)[0])
+    }
+
 
     return arguments
 }

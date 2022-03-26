@@ -8,7 +8,8 @@ const outputTarget = 19690720;
 let memory
 let instructionPointer, programRunning, opCode, output, instructionLength, parameters,parameterModes
 
-
+/*let noun = 12
+let verb = 2*/
 
 for (let noun=0; noun<=99; noun++)
 {
@@ -17,7 +18,7 @@ for (let noun=0; noun<=99; noun++)
         memory[1] = noun;
         memory[2] = verb;
 
-        if (memory.length >0){
+        if (memory.length >0) {
             instructionPointer = 0;
 
             programRunning = true
@@ -39,6 +40,7 @@ for (let noun=0; noun<=99; noun++)
         }
 
         output = memory[0]
+
 
         if (output == outputTarget)
         {
