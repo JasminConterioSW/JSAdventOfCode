@@ -2,6 +2,7 @@ const input = require('./getInput').input;
 const instructionProcessing = require('./instructionProcessing')
 const instructionExecution = require('./instructionExecution')
 
+instructionProcessor = new instructionProcessing.instructionProcessor();
 
 const outputTarget = 19690720;
 
@@ -25,9 +26,9 @@ for (let noun=0; noun<=99; noun++)
         }
 
         while (programRunning) {
-            opCode = instructionProcessing.getOpCode(memory[instructionPointer]);
-            instructionLength = instructionProcessing.getInstructionLength(opCode);
-            parameterModes = instructionProcessing.getParameterModes(memory[instructionPointer], instructionLength)
+            opCode = instructionProcessor.getOpCode(memory[instructionPointer]);
+            instructionLength = instructionProcessor.getInstructionLength(opCode);
+            parameterModes = instructionProcessor.getParameterModes(memory[instructionPointer], instructionLength)
             if (instructionLength > 1) {
                 parameters = memory.slice(instructionPointer+1, instructionPointer+instructionLength)
             }
